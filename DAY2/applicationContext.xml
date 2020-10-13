@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<beans  
+    xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+    xmlns:p="http://www.springframework.org/schema/p"  
+    xsi:schemaLocation="http://www.springframework.org/schema/beans  
+               http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">  
+ 
+ <bean id="addressbean" class="com.training.Address">
+ <property name="streetName" value="Colony"></property>
+ <property name="cityName" value="Hyd"></property>
+ <property name="pincode" value="500000"></property>
+ </bean>
+ 
+ <bean id="project1" class="com.training.Project">
+ <property name="name" value="SampleReact"></property>
+ <property name="technology" value="ReactJS"></property>
+ <property name="mentor" value="Shital"></property>
+ <property name="teamCount" value="6"></property>
+ </bean>
+ 
+ <bean id="project2" class="com.training.Project">
+ <property name="name" value="SampleSpring"></property>
+ <property name="technology" value="Spring"></property>
+ <property name="mentor" value="Shital"></property>
+ <property name="teamCount" value="6"></property>
+ </bean>
+  
+<bean id="studentbean" class="com.training.Student">  
+<property name="studName" value="Brunda"></property>
+<property name="address" ref="addressbean"></property>  
+<property name="classes">
+<list>
+	<value>Java</value>
+	<value>Python</value>
+	<value>C++</value>
+</list>
+</property>
+<property name="projects">
+<list>
+	<ref bean="project1"></ref>
+	<ref bean="project2"></ref>
+</list>
+</property>
+</bean>  
+  
+</beans> 
