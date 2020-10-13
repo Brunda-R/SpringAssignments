@@ -1,0 +1,112 @@
+Spring is a Lightweight Application Framework
+Spring Promotes loose coupling through Inversion of Control
+(IOC)
+Spring comes with rich support for Aspect Oriented Programming (AOP)
+
+Wiring of components (Dependency Injection)
+Promotes/simplifies decoupling, design to interfaces
+Declarative programming without J2EE
+Easily configured aspects, esp. transaction support
+
+Test
+This layer provides support of testing with JUnit and
+TestNG
+Spring Core Container
+The Spring Core container contains core, beans, context and expression language (EL) modules.
+Core and Beans
+These modules provide IOC and Dependency Injection features.
+Context
+This module supports internationalization (I18N), EJB, JMS, Basic Remoting.
+Expression Language
+It is an extension to the EL defined in JSP. It provides support to setting and getting property values, method invocation, a
+cce ssing collections and
+indexers, named variables, logical and arithmetic operators, retrieval of objects by name etc.
+AOP, Aspects and Instrumentation
+An aspect is a subprogram that is associated with a specific property of a program.
+These modules support aspect oriented programming implementation where you can use Advices,
+Pointcuts etc. to decouple the code.
+The aspects module provides support to integration with AspectJ.
+The instrumentation module provides support to class instrumentation and
+classloader implementations.
+Data Access / Integration
+This group comprises of JDBC, ORM, OXM, JMS and Transaction modules. These modules basically provide support to interact with
+th e database.
+Web
+This group comprises of Web, Web
+Servlet, Web Struts and Web Portlet. These modules provide support to create web application.
+
+Inversion of Control
+?
+Instead of objects invoking other objects, the dependent objects are added
+through an external entity/container.
+?
+Also known as the Hollywood principle ––“don’t call me I will call
+?
+Dependency injection
+?
+Dependencies are “injected” by container during runtime.
+?
+Beans define their dependencies through constructor arguments or
+properties
+?
+Prevents hard coded object creation and object/service lookup.
+?
+Loose coupling
+?
+Helps write effective unit tests.
+
+BeanFactory is core to the Spring framework
+Lightweight container that loads bean definitions and manages your beans.
+Configured declaratively using an XML file, or files, that determine how beans can be referenced and wired together.
+Knows how to serve and manage a singleton or prototype defined bean
+Responsible for lifecycle methods.
+Injects dependencies into defined beans when served 
+Removes the need for ad-hoc singletons and factories
+
+
+The bean class is the actual implementation of the bean being described by the BeanFactory. 
+Bean examples – DAO, DataSource, Transaction Manager, Persistence Managers, Service objects, etc
+Spring config contains implementation classes while your code should program to interfaces.
+Bean behaviors include:
+Singleton or prototype
+Autowiring
+Initialization and destruction methods 
+init-method
+destroy-method
+
+The IoC container is responsible to instantiate, configure and assemble the objects. The IoC container gets informations from the XML file and works accordingly. The main tasks performed by IoC container are:
+to instantiate the application class
+to configure the object
+to assemble the dependencies between the objects
+There are two types of IoC containers. They are:
+BeanFactory
+ApplicationContext
+
+We can inject the dependency by constructor. The <constructor-arg>subelement of <bean> is used for constructor injection. Here we are going to inject
+
+primitive and String-based values
+Dependent object (contained object)
+Collection values etc.
+
+Two ways to perform Dependency Injection in Spring framework
+By Constructor
+By Setter method
+
+The ClassPathXmlApplicationContext class is the implementation class of ApplicationContext interface. 
+We need to instantiate the ClassPathXmlApplicationContext class to use the ApplicationContext as given below:
+ApplicationContext context =   
+    new ClassPathXmlApplicationContext("applicationContext.xml");  
+
+The constructor of ClassPathXmlApplicationContext class receives string, so we can pass the name of the xml file to create the instance of
+ ApplicationContext.
+
+The XmlBeanFactory is the implementation class for the BeanFactory interface. To use the BeanFactory, we need to create the instance of XmlBeanFactory class as given below:
+
+Resource resource=new ClassPathResource("applicationContext.xml");  
+BeanFactory factory=new XmlBeanFactory(resource);  
+
+The constructor of XmlBeanFactory class receives the Resource object so we need to pass the resource object to create the object of BeanFactory.
+
+The org.springframework.beans.factory.BeanFactory and the org.springframework.context.ApplicationContext interfaces acts as the IoC container. The ApplicationContext interface is built on top of the BeanFactory interface. It adds some extra functionality than BeanFactory such as simple integration with Spring's AOP, message resource handling (for I18N), event propagation, application layer specific context (e.g. WebApplicationContext) for web application. So it is better to use ApplicationContext than BeanFactory.
+
+https://repo.spring.io/release/org/springframework/spring/5.0.0.RELEASE/
