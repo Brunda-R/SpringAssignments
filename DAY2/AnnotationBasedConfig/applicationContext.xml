@@ -9,10 +9,13 @@
 
 
 	<context:annotation-config/>
-	
+	<bean id="spellChecker" class="com.SpellChecker">   
+   </bean>
+   
 	<bean id="person" class="com.Person">
       <property name="personName"  value="Brunda" />
 		<property name="personAge" value="20"></property>
     
    </bean>
+   
 </beans>

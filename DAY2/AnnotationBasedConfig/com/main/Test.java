@@ -14,7 +14,7 @@ public class Test {
 		Person p1=(Person)context.getBean("person");
 		System.out.println(p1.getPersonName());
 		System.out.println(p1.getPersonAge());
-		
+		p1.printChecker();
 	
 	}
 
