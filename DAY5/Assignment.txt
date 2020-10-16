@@ -1,0 +1,39 @@
+1. What is Spring Boot? Why should you use it?
+A. Spring Boot provides a good platform for Java developers to develop a stand-alone and production-grade spring application that one can just run.
+   One can get started with minimum configurations without the need for an entire Spring configuration setup.
+   We can use Spring Boot because of these following reasons.	
+	a. It provides a flexible way to configure Java Beans, XML configurations, and Database Transactions.
+	b. It provides a powerful batch processing and manages REST endpoints.
+	c. In Spring Boot, everything is auto configured; no manual configurations are needed.
+	d. It offers annotation-based spring application
+	e. Eases dependency management
+	f. It includes Embedded Servlet Container
+
+2.What is the difference between @SpringBootApplication and @EnableAutoConfiguration annotation?
+A.  @SpringBootApplication is the entry point of the spring boot application to start. 
+    It internally bundles 3 annotations -
+	a. @EnableAutoCoinfiguration
+	b. @ComponentScan
+	c. @SpringBootConfiguration
+   where as the clear purpose of @EnableAutoConfiguration is to enable automatic configuration feature of Spring Boot application which automatically configures things if certain classes are present in Classpath
+
+3.What is Spring Initializer? why should you use it?
+A. One of the ways to Bootstrapping a Spring Boot application is by using Spring Initializer.
+   To do this, you will have to visit the Spring Initializer web page www.start.spring.io and choose your Build, Spring Boot Version and platform. 
+   Also, you need to provide a Group, Artifact and required dependencies to run the application.
+   we can use it because it generates configuration file with dependencies mentioned, without making user write boilerplate codes. 
+
+4. What is Spring Boot CLI? What are its benefits?
+A. The Spring Boot CLI is a Command Line Interface for Spring Boot. It can be used for a quick start with Spring. 
+   It can run Groovy scripts which means that a developer need not write boilerplate code; all that is needed is focus on business logic. 
+   Spring Boot CLI is the fastest way to create a Spring-based application.
+   	Benefits
+	a. It provides an interface to run and test Spring Boot Application from command prompt.
+	b. It internally use Spring Boot Starter and Spring Boot AutoConfigurate components in order to resolve all dependencies and executes the application.
+	c. It contains Groovy compiler and Grape Dependency Manager.
+	d. It supports Groovy Scripts without external Groovy installation.
+	e. It adds Spring Boot defaults and resolve all dependencies automatically.
+
+5. Can you change the port of Embedded Tomcat server in Spring boot? If Yes, How?
+A yes, the port of Embedded Tomcat server in Spring boot can be changed from default 8080 to required.
+  Generate a property file named "application.properties" and include "server.port=<portno>"
