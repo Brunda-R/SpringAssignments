@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="style.css"/>
+</head>
+<body>
+<h1>Users</h1>
+<table border="1px">
+<tr><th>First Name</th>
+<th>Last Name</th>
+<th>Email</th>
+</tr>
+<tr th:each="coll:${users}">
+<td th:text="${coll.firstName}"></td>
+<td th:text="${coll.lastName}"></td>
+<td th:text="${coll.email}"></td>
+</tr>
+</table>
+</body></html>

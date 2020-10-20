@@ -3,6 +3,7 @@ package com.training.org;
 import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,5 +26,15 @@ public class WebController {
 		model.addAttribute("name",name);
 		return "welcome";
 	}
+	
+	@Autowired
+	private RestService myRestService;
+	
+	@RequestMapping(value="/users")
+	public String getUsers(Model model) {
+		var users =  myRestService.getUsers();
+		model.addAttribute("users",users);
+		return "user";
+		}
 
 }
