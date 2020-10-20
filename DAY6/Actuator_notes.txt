@@ -1,0 +1,439 @@
+package com.training.org;
+
+import java.util.ArrayList;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.MediaType;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
+
+
+@RestController
+public class LoggingController {
+
+	Logger logger = LoggerFactory.getLogger(LoggingController.class);
+
+	@RequestMapping("/")
+	public String index() {
+		logger.trace("This is a TRACE message.");
+		logger.debug("This is a DEBUG message.");
+		logger.info("This is an INFO message.");
+		logger.warn("This is a WARN message.");
+		logger.error("You guessed it, an ERROR message.");
+
+		return "Welcome to Spring Logging! Check the console to see the log messages.";
+	}
+	
+	@RequestMapping("/employee")
+	public ModelAndView getEmployeeDetails(Model model) {
+		System.out.println("-------------------");
+		//ModelAndView modelAndView = new ModelAndView();
+		
+        ArrayList<Employee> params=new ArrayList<Employee>();
+        params.add(new Employee(1,"Pune",10000));
+        params.add(new Employee(1,"Hyd",20000));
+        params.add(new Employee(1,"Mum",30000));
+        model.addAttribute("empList", params);
+		
+		return new ModelAndView("Employee");
+	}
+
+
+	@RequestMapping("/greeting")
+	public ModelAndView welcome() {
+		System.out.println("-------------------");
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("Greeting.html");
+		return modelAndView;
+	}
+
+
+	@GetMapping(value = "/welcome", produces = MediaType.TEXT_HTML_VALUE)
+	@ResponseBody
+	public String welcomeAsHTML() {
+		return "<html>\n" + "<header><title>Welcome</title></header>\n" +
+				"<body>\n" + "Hello world\n" + "</body>\n" + "</html>";
+	}
+
+
+	
+
+
+}
+
+
+
+
+
+
+package com.training.org;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class LoggingController {
+
+  Logger logger = LoggerFactory.getLogger(LoggingController.class);
+
+  @RequestMapping("/")
+  public String index() {
+    logger.trace("This is a TRACE message.");
+    logger.debug("This is a DEBUG message.");
+    logger.info("This is an INFO message.");
+    logger.warn("This is a WARN message.");
+    logger.error("You guessed it, an ERROR message.");
+    
+    return "Welcome to Spring Logging! Check the console to see the log messages.";
+  }
+  
+  @GetMapping(value = "/welcome", produces = MediaType.TEXT_HTML_VALUE)
+  @ResponseBody
+  public String welcomeAsHTML() {
+      return "<html>\n" + "<header><title>Welcome</title></header>\n" +
+        "<body>\n" + "Hello world\n" + "</body>\n" + "</html>";
+  }
+
+  
+  
+  
+}
+
+
+
+
+
+
+package com.training.org;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
+
+@RestController
+public class LoggingController {
+
+  Logger logger = LoggerFactory.getLogger(LoggingController.class);
+
+  @RequestMapping("/")
+  public String index() {
+    logger.trace("This is a TRACE message.");
+    logger.debug("This is a DEBUG message.");
+    logger.info("This is an INFO message.");
+    logger.warn("This is a WARN message.");
+    logger.error("You guessed it, an ERROR message.");
+    
+    return "Welcome to Spring Logging! Check the console to see the log messages.";
+  }
+  
+  @RequestMapping("/greeting")
+  public ModelAndView welcome() {
+      ModelAndView modelAndView = new ModelAndView();
+      modelAndView.setViewName("Greeting.html");
+      return modelAndView;
+  }
+
+  
+  
+  
+}
+
+
+
+
+
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
+    <layout class="ch.qos.logback.classic.PatternLayout">
+      <Pattern>
+        using xml file %d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n
+      </Pattern>
+    </layout>
+  </appender>
+
+  <root level="info">
+    <appender-ref ref="Console" />
+  </root>
+
+  <!-- Log everything at the TRACE level -->
+  <logger name="com.training.org" level="trace" additivity="false">
+    <appender-ref ref="Console" />
+  </logger>
+</configuration>
+	
+
+
+
+
+
+
+Let's see how to include a Logback configuration with a different color and logging pattern, with separate specifications for console and file output, and with a decent rolling policy to avoid generating huge log files.
+First of all, we should go toward a solution which allows handling our logging settings alone, instead of polluting application.properties, which is commonly used for many other application settings.
+When a file in the classpath has one of the following names, Spring Boot will automatically load it over the default configuration:
+logback-spring.xml
+logback.xml
+logback-spring.groovy
+logback.groovy
+
+
+
+
+
+
+
+management.endpoints.web.exposure.include=*
+
+logging.level.root = WARN
+spring.output.ansi.enabled= ALWAYS
+
+
+logging.pattern.file=%d{yyyy-MM-dd HH:mm:ss} LOG file - %logger{36} -%msg%n
+logging.file.name= logs/mylog1.log
+
+logging.pattern.console=%d{yyyy-MM-dd HH:mm:ss} LOG Console - %logger{36} -%msg%n
+
+
+
+ 
+
+    
+    
+
+
+management.endpoints.web.exposure.include=*
+
+logging.level.root = WARN
+spring.output.ansi.enabled= ALWAYS
+
+#Logging for File
+logging.pattern.file=%d{yyyy-MM-dd HH:mm:ss} LOG file [%thread] %-5level - %logger{36} - %msg%
+logging.file.name= logs/mylog1.log
+
+
+#Logging for console
+logging.pattern.console=%d{yyyy-MM-dd HH:mm:ss} LOG Console - %logger{36} -%msg%n
+
+ 
+
+    
+    
+    
+    
+    
+
+
+This message pattern uses the following Logback variables:
+%d{yyyy-MM-dd HH:mm:ss}—Date in the specified format
+[%thread] —Current thread identifier writing the message
+%-5level —The message level with five-character, fixed-width spacing
+%logger{36} —The name of the logger writing the message
+%msg%n —The actual message followed by a new line
+
+
+
+# Pattern:
+ 
+logging.pattern.console=%d{yy-MMMM-dd HH:mm:ss:SSS} %5p %t %c{2}:%L - %m%n
+ 
+# Output:
+ 
+18-January-17 02:21:20:317  WARN http-nio-8080-exec-1 o.o.s.c.MainController:22 - This is WARN
+18-January-17 02:21:20:320 ERROR http-nio-8080-exec-1 o.o.s.c.MainController:23 - This is ERROR
+
+
+
+
+
+# Pattern:
+ 
+logging.pattern.console= %d{dd/MM/yyyy HH:mm:ss.SSS} %-5level [%thread] %logger{115} - %msg%n
+ 
+# Output:
+ 
+17/01/2018 02:15:15.052 WARN  [http-nio-8080-exec-1] org.o7planning.sblogging.controller.MainController - This is WARN
+17/01/2018 02:15:15.054 ERROR [http-nio-8080-exec-1] org.o7planning.sblogging.controller.MainController - This is ERROR
+
+
+        
+        
+        
+        
+
+
+
+And you can change  "Logging pattern" by customizing the following properties:
+logging.pattern.console
+logging.pattern.file
+
+# Pattern:
+ 
+logging.pattern.console= %d{yyyy-MMM-dd HH:mm:ss.SSS} %-5level [%thread] %logger{15} - %msg%n
+ 
+# Output:
+ 
+2018-Jan-17 01:58:49.958 WARN  [http-nio-8080-exec-1] o.o.s.c.MainController - This is WARN
+2018-Jan-17 01:58:49.960 ERROR [http-nio-8080-exec-1] o.o.s.c.MainController - This is ERROR
+
+        
+        
+        
+
+
+package com.training.org;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class LoggingController {
+
+  Logger logger = LoggerFactory.getLogger(LoggingController.class);
+
+  @RequestMapping("/")
+  public String index() {
+    logger.trace("This is a TRACE message.");
+    logger.debug("This is a DEBUG message.");
+    logger.info("This is an INFO message.");
+    logger.warn("This is a WARN message.");
+    logger.error("You guessed it, an ERROR message.");
+    
+    return "Welcome to Spring Logging! Check the console to see the log messages.";
+  }
+}
+
+
+
+
+
+
+
+
+Spring Boot comes with a preconfigured default logger based on the Logback framework. We can use this logging setup out of the box without any additional configuration since the spring-web-starter package we built our project on includes this dependency already.
+The default logger is great for quick prototyping or experimenting. However, we’ll inevitably want a bit more configuration, which we’ll get to in later sections.
+First, to update our logging controller to use this built-in logger, update LoggingController.java to the following:
+
+
+    
+    
+    
+
+
+"Logging" is simply understood to be "recording" the problems during operation of applications. The problems herein are errors, warnings and other information,.... This information can be displayed on Console screen or recorded in files. 
+When you run the Spring Boot application directly on   Eclipse, you can see information on Console window. This information show you the state of the application, errors occurring during running application. That is Logging!.
+
+
+
+
+
+
+
+# my global config
+global:
+  scrape_interval:     15s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
+  evaluation_interval: 15s # Evaluate rules every 15 seconds. The default is every 1 minute.
+  # scrape_timeout is set to the global default (10s).
+
+# # Alertmanager configuration
+# alerting:
+#   alertmanagers:
+#   - static_configs:
+#     - targets:
+#       # - alertmanager:9093
+
+# # Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
+# rule_files:
+#   # - "first_rules.yml"
+#   # - "second_rules.yml"
+
+# A scrape configuration containing exactly one endpoint to scrape:
+# Here it's Prometheus itself.
+scrape_configs:
+  # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
+  - job_name: 'prometheus'
+    # metrics_path defaults to '/metrics'
+    # scheme defaults to 'http'.
+
+    static_configs:
+    - targets: ['localhost:9090']
+
+  - job_name: 'spring-actuator'
+    metrics_path: '/actuator/prometheus'
+    scrape_interval: 5s
+    static_configs:
+    - targets: ['localhost:8080']
+
+
+
+        
+
+
+<dependency>
+			<groupId>io.micrometer</groupId>
+			<artifactId>micrometer-registry-prometheus</artifactId>
+		
+		</dependency>
+        
+        
+
+
+
+management.endpoints.web.exposure.include=*
+
+
+
+
+
+
+
+
+Endpoint: The actuator endpoints allows us to monitor and interact with the application. Spring Boot provides a number of built-in endpoints. We can also create our own endpoint. We can enable and disable each endpoint individually. Most of the application choose HTTP, where the Id of the endpoint, along with the prefix of /actuator, is mapped to a URL.
+For example, the /health endpoint provides the basic health information of an application. The actuator, by default, mapped it to /actuator/health.  
+Metrics: Spring Boot Actuator provides dimensional metrics by integrating with the micrometer. The micrometer is integrated into Spring Boot. It is the instrumentation library powering the delivery of application metrics from Spring. It provides vendor-neutral interfaces for timers, gauges, counters, distribution summaries, and long task timers with a dimensional data model.
+Audit: Spring Boot provides a flexible audit framework that publishes events to an AuditEventRepository. It automatically publishes the authentication events if spring-security is in execution.
+
+
+    
+    
+
+
+Once you have developed your application and it is deployed on production, it is very important to keep a check on the health of the application that is up and running, especially for mission-critical applications like Banking applications, where if customer-facing applications are down, it will directly impact the Business of the bank.
+In the traditional way, before Spring Actuator, we needed to write the code to check the Health of the application, but with Spring Actuator we need not to write any code for Health Check but Spring Actuator provides some out of the box endpoints which can be very useful for Health Check up of the application.
+
+
+
+
+
+
+
+
+Spring boot’s module Actuator allows you to monitor and manage application usages in production environment, without coding and configuration for any of them. These monitoring and management information is exposed via REST like endpoint URLs.
+
+Spring Boot Actuator is a sub-project of the Spring Boot Framework. It includes a number of additional features that help us to monitor and manage the Spring Boot application. It contains the actuator endpoints (the place where the resources live). We can use HTTP and JMX endpoints to manage and monitor the Spring Boot application. If we want to get production-ready features in an application, we should use the Spring Boot actuator.
+
+
+    
+    
+    
+    
+
+https://xlog.x-hub.io/monitoring-spring-boot-application/
+    
+    

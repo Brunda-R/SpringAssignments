@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="style.css"/>
+</head>
+<body>
+<p th:text="'Hello '+${name}" ></p>
+<ol>
+<li th:each="coll:${col}" th:text="${coll}"></li>
+</ol>
+</body></html>
