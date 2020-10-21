@@ -1,0 +1,114 @@
+What is Loose Coupling?
+A. In computing and systems design a loosely coupled system is one in which each of its components has, or makes use of,
+little or no knowledge of the definitions of other separate components.
+Subareas include the coupling of classes, interfaces, data, and services. Loose coupling is the opposite of tight coupling.
+
+What is a Dependency?
+A. A Java class has a dependency on another class, if it uses an instance of this class. We call this a class dependency.
+For example, a class which accesses a logger service has a dependency on this service class.
+
+What is IOC (Inversion of Control)?
+A. Inversion of Control (IoC) is an object-oriented programing practice whereby the object coupling is bounded at runtime
+ by an "assembler" object and are typically not knowable at compile time using static analysis.
+
+What is Dependency Injection?
+A. Dependency injection (DI) is the concept in which objects get other required objects from outside.
+Ideally Java classes should be as independent as possible from other Java classes.
+This increases the possibility of reusing these classes and to be able to test them independently from other classes.
+
+Can you give few examples of Dependency Injection?
+A. Ex: Using bean factory
+Resource resource=new ClassPathResource("applicationContext.xml");  
+BeanFactory factory=new XmlBeanFactory(resource);  
+
+What is Auto Wiring?
+A. Autowiring feature of spring framework enables you to inject the object dependency implicitly. It internally uses setter or
+ constructor injection. Autowiring can't be used to inject primitive and string values.
+
+What are the important roles of an IOC Container?
+A.  The main tasks performed by IoC container are:
+	to instantiate the application class
+	to configure the object
+	to assemble the dependencies between the objects
+
+What are Bean Factory and Application Context?
+A. These are 2 IOC Containers used in Spring for Dependency Injection.
+
+Can you compare Bean Factory with Application Context?
+A. The org.springframework.beans.factory.BeanFactory and the org.springframework.context.ApplicationContext interfaces acts as the
+IoC container. The ApplicationContext interface is built on top of the BeanFactory interface. It adds some extra functionality
+than BeanFactory such as simple integration with Spring's AOP, message resource handling (for I18N), event propagation, 
+application layer specific context (e.g. WebApplicationContext) for web application. So it is better to use ApplicationContext
+than BeanFactory.
+
+How do you create an application context with Spring?
+A. ApplicationContext context =   
+    new ClassPathXmlApplicationContext("applicationContext.xml");  
+
+How does Spring know where to search for Components or Beans?
+A. This part of “telling Spring where to search” is called a Component Scan. You define the packages that have to be scanned.
+ Once you define a Component Scan for a package, Spring would search the package and all its sub packages for components/beans.
+
+What is a Component Scan?
+A. Using component scan is one method of asking Spring to detect Spring-managed components. Spring needs the information to 
+locate and register all the Spring components with the application context when the application starts. Spring can auto scan,
+detect, and instantiate components from pre-defined project packages.
+
+How do you define a component scan in XML and Java Configurations?
+A. Annotation @ComponentScan can be used in java files.
+  <context:component-scan> can be used in XML configuration.
+
+How is it done with Spring Boot?
+A. @ComponentScan can be used.
+
+What does @Component signify?
+A. @Component is the most generic Spring annotation. A Java class decorated with @Component is found during classpath scanning
+ and registered in the context as a Spring bean.
+
+What does @Autowired signify?
+A. Autowiring feature of spring framework enables you to inject the object dependency implicitly. It internally uses setter or
+ constructor injection. Autowiring can't be used to inject primitive and string values.
+What’s the difference Between @Controller, @Component, @Repository, and @Service Annotations in Spring?
+What is the default scope of a bean?
+Are Spring beans thread safe?
+What are the other scopes available?
+How is Spring’s singleton bean different from Gang of Four Singleton Pattern?
+What are the different types of dependency injections?
+What is setter injection?
+What is constructor injection?
+How do you choose between setter and constructor injections?
+What are the different options available to create Application Contexts for Spring?
+What is the difference between XML and Java Configurations for Spring?
+How do you choose between XML and Java Configurations for Spring?
+How does Spring do Autowiring?
+What are the different kinds of matching used by Spring for Autowiring?
+How do you debug problems with Spring Framework?
+How do you solve NoUniqueBeanDefinitionException?
+How do you solve NoSuchBeanDefinitionException?
+What is @Primary?
+What is @Qualifier?
+What is CDI (Contexts and Dependency Injection)?
+Does Spring Support CDI?
+Would you recommed to use CDI or Spring Annotations?
+What are the major features in different versions of Spring?
+What are new features in Spring Framework 4.0?
+What are new features in Spring Framework 5.0?
+What are important Spring Modules?
+What are important Spring Projects?
+What is the simplest way of ensuring that we are using single version of all Spring related dependencies?
+Name some of the design patterns used in Spring Framework?
+What do you think about Spring Framework?
+Why is Spring Popular?
+Can you give a big picture of the Spring Framework?
+
+
+
+Spring MVC
+What is Model 1 architecture?
+What is Model 2 architecture?
+What is Model 2 Front Controller architecture?
+Can you show an example controller method in Spring MVC?
+Can you explain a simple flow in Spring MVC?
+What is a ViewResolver?
+What is Model?
+What is ModelAndView?
