@@ -1,0 +1,152 @@
+const path = require('path');
+
+var config = {
+   entry: './main.js',
+   output: {
+      path:path.resolve(__dirname, 'dist'),
+      filename: 'index.js',
+   },
+   devServer: {
+      inline: true,
+      port: 3000
+   },
+    
+   module: {
+      rules: [
+         {
+            test: /\.jsx?$/,
+            exclude: /node_modules/,
+            loader: 'babel-loader',
+                
+            query: {
+               presets: ['es2015', 'react']
+            }
+         }
+      ]
+   }
+}
+module.exports = config;
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang = "en">
+   <head>
+      <meta charset = "UTF-8">
+      <title>React App</title>
+   </head>
+   <body>
+      <div id = "app"></div>
+      <script src = "index.js"></script>
+   </body>
+</html>
+
+
+
+
+
+
+This is the first react component. We will explain React components in depth in one of our later tutorials. This component will render Hello World!!!.
+
+App.jsx
+import React from 'react';
+
+class App extends React.Component {
+   render() {
+      return (
+         <div>
+            Hello World!!!
+         </div>
+      );
+   }
+}
+
+export default App;
+
+
+
+
+
+
+
+
+{
+  "name": "myreactapp",
+  "version": "1.0.0",
+  "description": "this is a sample app for react training",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server"
+  },
+  "author": "PM",
+  "license": "ISC",
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "webpack": "^4.16.1",
+    "webpack-cli": "^3.1.0",
+    "webpack-dev-server": "^3.1.4"
+  }
+}
+
+
+
+
+Step 3 - Add Dependencies and plugins
+
+We will use webpack bundler in these tutorials so let's install webpack and webpack-dev-server.
+
+C:\Users\username>npm install webpack --save
+C:\Users\username>npm install webpack-dev-server --save
+Since we want to use React, we need to install it first. The --save command will add these packages to package.json file.
+
+C:\Users\username\Desktop\reactApp>npm install react --save
+C:\Users\username\Desktop\reactApp>npm install react-dom --save
+We already mentioned that we will need some babel plugins so let's install it too.
+
+C:\Users\username\Desktop\reactApp>npm install babel-core
+C:\Users\username\Desktop\reactApp>npm install babel-loader
+C:\Users\username\Desktop\reactApp>npm install babel-preset-react
+C:\Users\username\Desktop\reactApp>npm install babel-preset-es2015
+
+    
+Step 2 - Create Root Folder
+
+The root folder will be named reactApp and we will place it on Desktop. After the folder is created we need to open it and create empty package.json file inside by running npm init from the command prompt and follow the instructions.
+
+C:\Users\username\Desktop>mkdir reactApp
+C:\Users\username\Desktop\reactApp>npm init
+
+    
+
+npm install takes 3 exclusive, optional flags which save or update the package version in your main package.json:
+
+-S, --save: Package will appear in your dependencies.
+
+-D, --save-dev: Package will appear in your devDependencies.
+
+-O, --save-optional: Package will appear in your optionalDependencies.
+
+When using any of the above options to save dependencies to your package.json, there is an additional, optional flag:
+
+-E, --save-exact: Saved dependencies will be configured with an exact version rather than using npm's default semver range operator.
+
+
+
+
+
+Step 1 - Install Global Packages
+
+You will need to install several packages for this setup. We will need some of the babel plugins so let's first install babel by running the following code in command prompt window.
+
+C:\Users\username>npm install -g babel
+C:\Users\username>npm install -g babel-cli

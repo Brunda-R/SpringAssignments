@@ -1,0 +1,751 @@
+CACHE MANIFEST
+#DATE 2000-14-08
+ 
+CACHE:
+# pages
+index.html
+offline/offline.html
+
+
+#styles & scripts
+css/theme.css
+ 
+NETWORK:
+
+ 
+FALLBACK:
+/index.html offline/offline.html
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	Contact
+<ul>
+<li> <a href="index.html">Index</a> </li>
+<li> <a href="aboutus.html">About</a> </li>
+<li> <a href="contact.html">Contact </a> </li>
+
+
+
+
+</ul>
+</body>
+</html>
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	About us
+<ul>
+<li> <a href="index.html">Index</a> </li>
+<li> <a href="aboutus.html">About</a> </li>
+<li> <a href="contact.html">Contact </a> </li>
+
+
+
+
+</ul>
+</body>
+</html>
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" manifest="example.appcache">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+INDEX PAGE
+<ul>
+<li> <a href="index.html">Index</a> </li>
+<li> <a href="aboutus.html">About</a> </li>
+<li> <a href="contact.html">Contact </a> </li>
+</ul>
+
+</body>
+</html>
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" manifest="example.appcache">
+<head>
+    <title>Using the Application Cache</title>
+</head>
+<body>
+    <!--The document content will be inserted here-->
+</body>
+</html>
+
+
+
+Step 2: Using Your Cache Manifest File
+After creating, upload your cache manifest file on the web server — make sure the web server is configured to serve the manifest files with the MIME type text/cache-manifest.
+
+Now to put your cache manifest into effect, you need enable it in your web pages, by adding the manifest attribute to the root <html> element, as shown below:
+
+    
+    
+    
+
+You might think what that code was all about. OK, let's get straight into it. A manifest file can have three distinct sections: CACHE, NETWORK, and FALLBACK.
+
+Files listed under the CACHE: section header (or immediately after the CACHE MANIFEST line) are explicitly cached after they're downloaded for the first time.
+Files listed under the NETWORK: section header are white-listed resources that are never cached and aren't available offline. It means users can only access login.php page when they'r online.
+The FALLBACK: section specifies fallback pages the browser should use in case the connection to the server cannot be established. Each entry in this section lists two URIs — first is the primary resource, the second is the fallback. For example, in our case offline.html page will be displayed if the user is offline. Also, both URIs must be from the same origin as the manifest file.
+Lines starting with a hash symbol (#) are comment lines.
+
+    
+    
+    
+    
+
+
+
+*) example.appcache
+
+
+CACHE MANIFEST
+# v1.0 : 10-08-2014
+ 
+CACHE:
+# pages
+index.html
+ 
+# styles & scripts
+css/theme.css
+js/jquery.min.js
+js/default.js
+ 
+# images
+/favicon.ico
+images/logo.png
+ 
+NETWORK:
+login.php
+ 
+FALLBACK:
+/ /offline.html
+
+
+
+
+To cache the files for offline uses, you need to complete the following steps:
+
+Step 1: Create a Cache Manifest File
+A manifest is a special text file that tells the browsers what files to store, what files not to store, and what files to replace with something else. The manifest file always starts with the words CACHE MANIFEST (in uppercase). Here is an example of a simple manifest file:
+
+    
+    
+    
+
+
+Typically most web-based applications will work only if you're online. But HTML5 introduces an application cache mechanism that allows the browser to automatically save the HTML file and all the other resources that needs to display it properly on the local machine, so that the browser can still access the web page and its resources without an internet connection.
+Here are some advantages of using the HTML5 application cache feature:
+Offline browsing — Users can use the application even when they're offline or there are unexpected disruptions in the network connection.
+Improve performance — Cached resources load directly from the user's machine rather than the remote server hence web pages load faster and performing better.
+Reduce HTTP request and server load — The browser will only have to download the updated/changed resources from the remote server that minimize the HTTP requests and saves precious bandwidth as well as reduce the load on the web server.
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript">
+		var database_name="Emp2"
+		var database_version=1.0
+		var database_description="my first database"
+		var database_size=2*1024*1024
+		var myObj=openDatabase(database_name,database_version,database_description,database_size,onSuccess());
+		myObj.transaction(function(tx){
+				tx.executeSql('CREATE TABLE IF NOT EXISTS movie(id,title,director)')
+				alert("table is created")
+			})
+		
+		function insertData(){
+			var request = new XMLHttpRequest()
+
+			request.open('GET', 'https://ghibliapi.herokuapp.com/films', true)
+			request.onload = function () {
+			  var data = JSON.parse(this.response)
+			  if (request.status >= 200 && request.status < 400) {
+			    data.forEach((movie) => {
+			      console.log("Id"+movie.id)
+			      console.log("TITLE"+movie.title)
+			      console.log("Director"+movie.director)
+				myObj.transaction(function(tx){
+					tx.executeSql('insert into movie(id,title,director) values("'+movie.id+'","'+movie.title+'","'+movie.director+'")')
+				})
+				})
+			  } else {
+			    console.log('error')
+			  }
+			}
+			request.send()
+		}
+
+
+		function displayData(){
+			myObj.transaction(function (tx) {
+                   var str = '<table border="4px">';  
+		            tx.executeSql('SELECT * FROM movie', [], function (tx, results) {  
+		                var len = results.rows.length, i;  
+		                for (i = 0; i < len; i++) {  
+		                str += "<tr>";  
+		                str += "<td>" + results.rows.item(i).id + "</td>";  
+		                str += "<td>" + results.rows.item(i).title + "</td>";  
+		                str += "<td>" + results.rows.item(i).director+ "</td>";  
+		                str += "</tr>";  
+		                  }
+		                str+="</table>"
+		                document.getElementById("result").innerHTML += str;  
+		                str = '';  
+		            });
+
+		        });  
+			}
+
+     	function onSuccess(){
+			alert("Database is created")
+		}
+
+	</script>
+</head>
+<body>
+	
+	<input type="button" name="" value="Insert Record" onclick="insertData()">
+	<input type="button" name="" value="Display Data" onclick="displayData()">
+<p id="result"></p>
+</body>
+</html>
+
+
+
+
+
+
+		var database_name="Employee"
+		var database_version=1.0
+		var database_description="my first database"
+		var database_size=2*1024*1024
+		var myObj=openDatabase(database_name,database_version,database_description,database_size,onSuccess());
+		myObj.transaction(function(tx){
+				tx.executeSql('CREATE TABLE IF NOT EXISTS movie(name)')
+				alert("table is created")
+			})
+		
+		function insertData(){
+			// var id=document.getElementById('txt1').value
+			// var name=document.getElementById('txt2').value
+			// var location=document.getElementById('txt3').value
+
+			var request = new XMLHttpRequest()
+
+			request.open('GET', 'https://ghibliapi.herokuapp.com/films', true)
+			request.onload = function () {
+			  var data = JSON.parse(this.response)
+			  if (request.status >= 200 && request.status < 400) {
+			    data.forEach((movie) => {
+			      console.log(movie.title)
+				myObj.transaction(function(tx){
+					tx.executeSql('insert into movie(name) values("'+movie.title+'")')
+					// alert("data inserted")
+				})
+				})
+			  } else {
+			    console.log('error')
+			  }
+			}
+			request.send()
+		}
+
+
+		function displayData(){
+			myObj.transaction(function (tx) {
+                   var str = '<table border="4px">';  
+		            tx.executeSql('SELECT * FROM movie', [], function (tx, results) {  
+		                var len = results.rows.length, i;  
+		                for (i = 0; i < len; i++) {  
+		                str += "<tr>";  
+		                str += "<td>" + results.rows.item(i).id + "</td>";  
+		                str += "<td>" + results.rows.item(i).name + "</td>";  
+		                str += "<td>" + results.rows.item(i).location + "</td>";  
+		                str += "</tr>";  
+		                  }
+		                str+="</table>"
+		                document.getElementById("result").innerHTML += str;  
+		                str = '';  
+		            });
+
+		        });  
+			}
+
+
+		
+		
+	
+
+
+
+		function onSuccess(){
+			alert("Database is created")
+		}
+
+
+        
+        
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript">
+
+		var myObj=openDatabase("MyDatabase","1.0","Description:- Movie collection",2*1024*1024,onSuccess());
+		myObj.transaction(function(tx){
+				tx.executeSql('CREATE TABLE IF NOT EXISTS movie(name)')
+				alert("table is created")
+		})
+		
+		function insertRecord(){
+				myObj.transaction(function(tx){
+					tx.executeSql('insert into movie(name) values("The Pursuit of Happiness")')
+					alert("data inserted")
+				})
+		}
+		function onSuccess(){
+			alert("Database is created")
+		}
+
+	</script>
+</head>
+<body>
+	<input type="button" name="" value="Insert Record" onclick="insertRecord()">
+
+</body>
+</html>
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript">
+		function createDatabase(){
+			var myObj=openDatabase("MyDatabase","1.0","Description:- Movie collection",2*1024*1024,onSuccess());
+	     	myObj.transaction(function(tx){
+				tx.executeSql('CREATE TABLE IF NOT EXISTS movie(name)')
+				alert("table is created")
+			})
+		}
+
+		function onSuccess(){
+			alert("Database is created")
+		}
+
+	</script>
+</head>
+<body>
+	<input type="button" name="" value="Create database" onclick="createDatabase()">
+
+</body>
+</html>
+
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+<p><button onclick="clickCounter()" type="button">Click me!</button></p>
+<div id="result"></div>
+<p>Click the button to see the counter increase.</p>
+</body>
+</html>
+
+<script>
+function clickCounter() {
+    if(typeof(Storage) !== "undefined") {
+        if (sessionStorage.clickcount) {
+            sessionStorage.clickcount = Number(sessionStorage.clickcount)+1;
+        } else {
+            sessionStorage.clickcount = 1;
+        }
+        document.getElementById("result").innerHTML = "You have clicked the button " + sessionStorage.clickcount + " time(s) in this session.";
+    } else {
+        document.getElementById("result").innerHTML = "Sorry, your browser does not support web storage...";
+    }
+}
+</script>
+
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript">
+	if (typeof(Storage) != "undefined") {
+    	// Store
+    	localStorage.setItem("firstname", "mark");
+    	localStorage.setItem("lastname", "peter");
+    	localStorage.setItem("salary", "10000$");
+   	 	// Retrieve
+    	    
+	} 
+	else {
+	    document.getElementById("result").innerHTML = "Sorry, your browser does not support Web Storage...";
+	}
+
+	function getDetails(){
+		document.getElementById("fName").innerHTML = localStorage.getItem("firstname");
+		document.getElementById("lName").innerHTML = localStorage.getItem("lastname");
+		document.getElementById("sal").innerHTML = localStorage.getItem("salary");
+	}
+
+</script>
+</head>
+<body>
+	<p id="fName"></p>
+	<p id="lName"></p>
+	<p id="sal"></p>
+	<input type="button" name="" onclick="getDetails()" value="GET DETAILS">
+</body>
+</html>
+
+
+
+
+
+
+8.2. local storage v/s cookiesLocal storage can at first glance seem to play a similar role to HTTP cookies, but  there are a few key differences. First of all, cookies are intended to be read on the server side, whereas local storage is only available on the client side. If you need your server-side code to react differently based on some saved values, cookies are the way to go. Yet, cookies are sent along with each HTTP request to your server and this can result in significant overhead in terms of bandwidth. 
+Local storage, on the other hand, just sits on the user’s hard drive waiting to be read, so it costs nothing to use
+.
+In addition, we have significantly more size to store things using local storage. With cookies, we could only store 4KB of information in total. 
+With local storage, the maximum is 5MB.
+
+
+
+
+
+8.1. Introduction
+The Web Storage API defines a standard for how we can save simple data locally
+on a user’s computer or device. Before the emergence of the Web Storage standard, web developers often stored user information in cookies, or by using plugins. With Web Storage, we now have a standardized definition for how to store up to 5MB of simple data created by our websites or web applications. Better still, Web Storage already works in Internet Explorer 8.0!
+Web Storage is a great complement to Offline Web Applications, because you need somewhere to store all that user data while you’re working offline, andWeb Storage provides it.
+Two kinds of storage
+session Storage
+Session storage lets us keep track of data specific to one window or tab. It allows us to isolate information in each window. Even if the user is visiting the same site in two windows, each window will have its own individual session storage object and thus have separate, distinct data.
+Session storage is not persistent—it only lasts for the duration of a user’s session
+on a specific site (in other words, for the time that a browser window or tab is open
+and viewing that site).
+Local Storage
+Unlike session storage, local storage allows us to save persistent data to the user’s computer, via the browser. When a user revisits a site at a later date, any data saved to local storage can be retrieved.
+
+
+
+
+<!doctype html>
+  <html>
+  <head>
+  <meta charset="UTF-8">
+  <title>Pythagorean theorem</title>
+  </head>
+  <body>
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <mrow>
+        <msup><mi>a</mi><mn>2</mn></msup>
+        <mo>+</mo>
+        <msup><mi>b</mi><mn>2</mn></msup>
+        <mo>=</mo>
+        <msup><mi>c</mi><mn>2</mn></msup>
+      </mrow>
+    </math>
+  </body>
+</html> 
+
+
+
+
+
+
+
+
+<fieldset>
+	     <legend>Options</legend>
+	        <input type="checkbox"/>Option 1
+            <input type="checkbox"/>Option 2
+           </fieldset>
+    
+    
+    
+    
+    
+
+
+<form oninput="o.value=a.value*b.value"> 
+	<input name="a" value="2" type="number"> x 
+	<input name="b" value="3" type="number"> = 
+	<output name="o">6</output>
+</form>
+
+
+
+
+
+
+
+Email
+ <input type="email" name="email">
+
+Search
+<input type="search" name="googlesearch">
+
+url
+ <input type="url" name="homepage">
+
+Number
+<input type="number" name="quantity" min="1" max="5">
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+
+</head>
+<body>
+<h1 style="text-align: center;">WELCOME</h1>
+<table border="3px">
+
+	<tr>
+		<td>Enter your name</td>
+		<td> <input type="text" name=""> </td>
+	</tr>
+
+	<tr>
+		<td>Enter your password</td>
+		<td> <input type="password" name=""></td>
+	</tr>
+	
+	<tr>
+		<td>Enter your DOB</td>
+		<td> <input type="date" name="" max="1990-01-01"></td>
+	</tr>
+	
+	<tr>
+		<td>Enter your favorite color</td>
+		<td> <input type="color" name="" value="#deb887"></td>
+	</tr>
+	
+	
+	<tr>
+		<td>Enter range</td>
+		<td><input type="range" name="points" min="0" max="10"></td>
+	</tr>
+
+	<tr>
+		<td> Select other details</td>
+		<td>
+			Month
+<input type="month" name="bdaymonth">
+<br>
+Time
+<input type="time" name="usr_time">
+<br>
+Week
+ <input type="week" name="year_week">
+<br>
+Datetime
+<input type="datetime-local" name="bdaytime">
+
+
+</td>
+</tr>
+
+	
+
+
+</table>
+
+
+
+
+
+
+</body>
+</html>
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+
+</head>
+<body>
+<h1 style="text-align: center;">WELCOME</h1>
+<table border="3px">
+
+	<tr>
+		<td>Enter your name</td>
+		<td> <input type="text" name=""> </td>
+	</tr>
+
+	<tr>
+		<td>Enter your password</td>
+		<td> <input type="password" name=""></td>
+	</tr>
+	
+	<tr>
+		<td>Enter your DOB</td>
+		<td> <input type="date" name="" max="1990-01-01"></td>
+	</tr>
+	
+	<tr>
+		<td></td>
+	</tr>
+	
+	
+	<tr>
+		<td></td>
+	</tr>
+	
+
+
+</table>
+
+
+
+
+
+
+</body>
+</html>
+
+
+
+<input list="browsers" name="browser">
+<datalist id="browsers">
+  <option value="Internet Explorer">
+  <option value="Firefox">
+  <option value="Chrome">
+  <option value="Opera">
+  <option value="Safari">
+</datalist>
+
+
+
+
+
+Maths <meter min="0" max="100" value="50"> </meter> <br>
+	English <meter min="0" max="100" value="79"> </meter>
+    
+    
+    
+    <progress value="50" max="100"> 
+    
+    
+    
+
+
+Example 1 - Define keywords for search engines:
+     <meta name="keywords" content="HTML, CSS, XML, 
+      XHTML, JavaScript">
+Example 2 - Define a description of your web page
+  <meta name="description" content="Free Web tutorials on  
+        HTML and CSS">
+Example 3 - Define the author of a page:
+      <meta name="author" content="Hege Refsnes">
+Example 4 - Refresh document every 30 seconds:
+     <meta http-equiv="refresh" content="30">
+
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta http-equiv="refresh" content="1">
+</head>
+<body>
+<h1>WELCOME</h1>
+</body>
+</html>
+
+
+
+
+
+HTML5
+<!DOCTYPE html>
+
+HTML 4.01
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+
+XHTML 1.0
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+
+
+
+
+The HTML5 <!DOCTYPE>
+Minimum HTML5 Document
+Browser Support for HTML5
+HTML5 - New Features
+New Elements in HTML5
+New Semantic/Structural Elements
+1) HTML4 vs HTML5 – APIs
+2) HTML4 vs HTML5 – Deletion of Unnecessary Elements
+3) HTML4 vs HTML5 – More Flexibility
+4) HTML4 vs HTML5 -  New Elements
+5) HTML4 vs HTML5 – More Powerful
+
+

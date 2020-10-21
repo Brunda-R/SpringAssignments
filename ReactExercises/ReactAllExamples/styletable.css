@@ -1,0 +1,33 @@
+table {
+    border: 0px solid lightgray;
+    border-collapse: collapse;
+    width:50%;
+    text-align: center;
+    font-family: "Source Sans Pro", sans-serif;
+}
+td,th{
+    padding: 10px;
+}
+.even{
+    background: white;
+}
+.theader{
+    background: #000;
+    color: white;
+}
+
+tr{
+    background-color:rgb(238,238,238);
+}
+
+ /* table {
+    display: flex;
+    justify-content: center;
+    background-color: grays;
+    border: 1px solid orange
+}
+
+td {
+    border: 1px solid gray;
+    width: 30em;
+} */

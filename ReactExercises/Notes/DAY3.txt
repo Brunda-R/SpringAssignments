@@ -1,0 +1,127 @@
+Here’s another example in which we use call to pass the context to thelogUpperCase() function in ES5:
+var logUpperCase = function() {
+  var _this = this
+   this.string = this.string.toUpperCase()
+  return function () {
+    return console.log(_this.string)
+  }
+}
+logUpperCase.call({ string: 'es5 rocks' })()
+
+While in ES6, we don’t need to mess around with _this:
+var logUpperCase = function() {
+  this.string = this.string.toUpperCase()
+  return () => console.log(this.string)
+}
+ 
+logUpperCase.call({ string: 'es6 rocks' })()
+
+
+//Traditional function
+function (a){
+	return a+100;
+}
+
+//Arrow function 
+1] remove the function word
+(a)=>{
+return a+100;
+}
+
+2] Remove the body brackets 
+(a)=>a+100
+
+
+3] remove the argument parantheses
+a => a+100
+
+React only covers view layer of the app so you still need to choose other technologies to get a complete tooling set for development.
+React is using inline templating and JSX. This can seem awkward to some developers.
+
+
+
+React follows component oriented development. The general idea is to break your whole UI into a set of components.
+In our case we have just one component named Greeting. In React, you create a component by calling React.createClass().
+Every component has a render() method which returns markup to render. In the above snippet we simply returned <p>Hello, Universe</p>, which is then displayed
+in the view.
+A component doesn’t do anything until it’s rendered. To render a component you call ReactDOM.render() with the component to render as the first argument.
+The second argument is the HTML element in which you would like to render your component. In our case we render our Greeting component into the <div> with an ID of greeting-div.
+You might be wondering what <greeting> really is? This syntax is known as JSX (JavaScript XML) which lets you build DOM nodes with HTML-like syntax. 
+JSX is completely optional and you don’t need it in order to use React, but it has a lot of nice features and there is no reason not to take advantage of it.
+Since the browser doesn’t understand JSX natively, we need to transform it to JavaScript first. This is handled by including Babel 5’s in-browser
+ ES6 and JSX transformer called browser.js. Babel will recognize JSX code in <script type="text/babel"></script> tags and transform it into JavaScript on the fly. Transforming JSX in the browser works quite well during development. However, you will need to pre-compile your JSX code into JS before deploying to production so that your app renders faster. We will see how to do that later on.
+
+React uses virtual DOM which is JavaScript object. This will improve apps performance since JavaScript virtual DOM is faster than the regular DOM.
+React can be used on client and server side.
+Component and Data patterns improve readability which helps to maintain larger apps.
+React can be used with other frameworks.
+
+React is a JavaScript library for creating user interfaces by Facebook and Instagram. Many people choose to think of React as the V in MVC.
+We built React to solve one problem: building large applications with data that changes over time.
+Simple
+Simply express how your app should look at any given point in time, and React will automatically manage all UI updates when your underlying data changes.
+Declarative
+When the data changes, React conceptually hits the "refresh" button, and knows to only update the changed parts.
+Build Composable Components
+React is all about building reusable components. In fact, with React the only thing you do is build components. Since they're so encapsulated, components make code reuse, testing, and separation of concerns easy.
+
+JSX - JSX is a JavaScript syntax extension that looks similar to XML. You can use a simple JSX syntactic transform with React.
+
+Components - React is all about components. You need to think of everything as a component. This will help you to maintain the code when working on larger scale projects.
+
+Unidirectional data flow and Flux - React implements one way data flow which makes it easy to reason about your app. Flux is a pattern that helps keeping your data unidirectional.
+
+License - React is licensed under the Facebook Inc. Documentation is licensed under CC BY 4.0.
+
+React is a UI library developed at Facebook to facilitate the creation of interactive, stateful & reusable UI components. It is used at Facebook in production, and Instagram.com is written entirely in React.
+One of it’s unique selling points is that not only does it perform on the client side, but it can also be rendered server side, and they can work together inter-operably.
+It also uses a concept called the Virtual DOM that selectively renders subtrees of nodes based upon state changes. It does the least amount of DOM manipulation possible in order to keep your components up to date.
+
+REPL stands for Read Eval Print Loop and it represents a computer environment like a window console or Unix/Linux shell where a command is entered and system responds with an output in interactive mode. Node.js or Node comes bundled with a REPL environment. It performs the following desired tasks.
+
+Read - Reads user's input, parse the input into JavaScript data-structure and stores in memory.
+Eval - Takes and evaluates the data structure
+Print - Prints the result
+Loop - Loops the above command until user press ctrl-c twice.
+REPL feature of Node is very useful in experimenting with Node.js codes and to debug JavaScript codes.
+
+Here’s the list of the top 10 best ES6 features for a busy software engineer (in no particular order):
+Default Parameters in ES6
+Template Literals in ES6
+Multi-line Strings in ES6
+Destructuring Assignment in ES6
+Enhanced Object Literals in ES6
+Arrow Functions in ES6
+Promises in ES6
+Block-Scoped Constructs Let and Const
+Classes in ES6
+Modules in ES6
+
+1995: JavaScript is born as LiveScript
+1997: ECMAScript standard is established
+1999: ES3 comes out and IE5 is all the rage
+2000–2005: XMLHttpRequest, a.k.a. AJAX, gains popularity in app such as Outlook Web Access (2000) and Oddpost (2002), Gmail (2004) and Google Maps (2005).
+2009: ES5 comes out (this is what most of us use now) with forEach, Object.keys, Object.create (specially for Douglas Crockford), and standard JSON
+2015: ES6/ECMAScript2015 comes out; it has mostly syntactic sugar, because people weren’t able to agree on anything more ground breaking (ES7?)
+
+ECMA [European Computer Manufacturers Association]
+
+ECMAScript 2015 is the newest version of the ECMAScript standard. 
+This standard was ratified in June 2015. ES2015 is a significant update to the language, and the first major update to the language since ES5 was standardized in 2009. 
+Implementation of these features in major JavaScript engines is underway now
+
+Server Side Scripting
+1] A technique used in web devlopment that involves using script on the web server to produce a response that is customised for each clients request to the website
+2] Exected in the back end or web server
+3] PHP python,java,ruby and asp....
+4] provide more security for the data
+5] can access the files system that resides on the web server
+6] Can connect to database server
+
+Client Side Scripting 
+1] A technique used in web development that involves using scripts that runs on client machines'
+2] Executed  in the client side 
+3] HTML CSS javascript 
+4] Does not provide much security for the data
+5] Cant access the files system that resides at the web server
+6] Cant connect to server database

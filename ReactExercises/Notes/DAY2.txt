@@ -1,0 +1,131 @@
+1] AGE Calculator
+WAP to accept two values from text box -> convert to date format and print the difference between two dates
+NOTE:- check validation first value should be less than second value
+2] display digital clock on screen
+3] Hide and seek game
+4] person class 
+	with name,address,DOB 
+	methods
+		acceptDetails();
+		ageCalculate();
+		displayDetails();
+
+//1
+		alert("javascript alert");
+		//2
+		var num1=parseInt(prompt("Enter number"));
+		alert("Number is "+num1)
+
+		//3
+		var result=confirm("Do you want to cont...");
+		alert("result "+result)
+
+		//4
+		console.log("LOG MESSAGE FOR APPLICATION")
+
+		//5
+		document.write("Message for browser")
+
+Other ways to specify value for font-size:
+Percentage (of parent font-size)
+Absolute size keyword: xx-small, x-small, small, medium (initial value), large, x-large, xx-large
+User agent specific; should differ by ~ 20%
+Relative size keyword: smaller, larger
+Relative to parent element’s font
+
+https://gofile.io/d/rew6Wa
+
+<html>
+   <head>
+      <style type="text/css">
+         p:first-letter { font-size: 5em; }
+         p.normal:first-letter { font-size: 10px; }
+      </style>
+   </head>
+   <body>
+      <p class="normal"> First character of this paragraph will be normal and will have font size 10 px;</p>
+      
+      <p>The first character of this paragraph will be 5em big  as  defined in the CSS rule above. Rest of the characters in this paragraph will remain normal. This example shows how to use :first-letter pseduo element to give effect to the first characters  of any HTML element.</p>
+   </body>
+</html>
+
+<html>
+   <head>
+      <style type="text/css">
+         p:first-line { text-decoration: underline; }
+         p.p1:first-line { text-decoration: none; }
+      </style>
+   </head>
+   <body>
+      <p class="p1"> This line would not have any underline because this belongs to  nline class.</p>
+      
+      <p>The first line of this paragraph will be underlined as defined in the CSS rule above. Rest of the lines in this paragraph will remain normal. This example shows how to use :first-line pseduo element to give effect to the first line of any HTML element.</p>
+   </body>
+</html>
+
+The @font-face rule is used to exhaustively describe a font face for use in a document. @font-face may also be used to define the location of a font for download, although this may run into implementation-specific limits.
+
+In general, @font-face is extremely complicated, and its use is not recommended for any except those who are expert in font metrics.
+
+Here is an example -
+
+<style tyle="text/css">
+   <!--
+   @font-face {
+      font-family: "Scarborough Light";
+      src: url("http://www.font.site/s/scarbo-lt");
+   }
+   @font-face {
+      font-family: Santiago;
+      src: local ("Santiago"),
+      url("http://www.font.site/s/santiago.tt")
+      format("truetype");
+      unicode-range: U+??,U+100-220;
+      font-size: all;
+      font-family: sans-serif;
+   }
+   -->
+</style>
+
+If you are writing your document using a character set other than ASCII or ISO-8859-1 you might want to set the @charset rule at the top of your style sheet to indicate what character set the style sheet is written in.
+
+The @charset rule must be written right at the beginning of the style sheet without even a space before it. The value is held in quotes and should be one of the standard character-sets. For example -
+
+<style tyle="text/css">
+   <!--
+   @charset "iso-8859-1"
+   .......other CSS rules .....
+   -->
+</style>
+
+The @import rule allows you to import styles from another style sheet. It should appear right at the start of the style sheet before any of the rules, and its value is a URL.
+
+It can be written in one of the two following ways -
+
+<style tyle="text/css">
+   <!--
+   @import "mystyle.css";
+   or
+   @import url("mystyle.css");
+   .......other CSS rules .....
+   -->
+</style>
+The significance of the @import rule is that it allows you to develop your style sheets with a modular approach. You can create various style sheets and then include them wherever you need them.
+
+The @import: rule imports another style sheet into the current style sheet.
+The @charset rule indicates the character set the style sheet uses.
+The @font-face rule is used to exhaustively describe a font face for use in a document.
+The !important rule indicates that a user-defined rule should take precedence over the author's style sheets.
+
+$("*")	Selects all elements	
+$(this)	Selects the current HTML element	
+$("p.intro")	Selects all <p> elements with class="intro"	
+$("p:first")	Selects the first <p> element	
+$("ul li:first")	Selects the first <li> element of the first <ul>	
+$("ul li:first-child")	Selects the first <li> element of every <ul>	
+$("[href]")	Selects all elements with an href attribute	
+$("a[target='_blank']")	Selects all <a> elements with a target attribute value equal to "_blank"	
+$("a[target!='_blank']")	Selects all <a> elements with a target attribute value NOT equal to "_blank"	
+$(":button")	Selects all <button> elements and <input> elements of type="button"	
+$("tr:even")	Selects all even <tr> elements	
+$("tr:odd")	Selects all odd <tr> elements
