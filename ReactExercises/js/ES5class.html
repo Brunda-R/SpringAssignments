@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript">
+		//ES5 notation
+
+		// function Employee(){
+		// 	this.name="Brunda";
+		// 	this.dep = "IT";
+
+		// 	this.displayEmployeeDetails=function(){
+		// 		alert("name "+this.name+" Department "+this.dep);
+		// 	}
+		// }
+
+		// var e = new Employee();
+		// e.displayEmployeeDetails();
+
+		//Liternal version
+
+		var e={
+			name:"Brunda",
+			dep:"IT",
+			showDetails:function(){
+				alert(this.name+" - "+this.dep);
+			}
+		};
+		e.showDetails();
+	</script>
+</head>
+<body>

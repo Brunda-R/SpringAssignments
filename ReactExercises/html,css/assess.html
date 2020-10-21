@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+
+li a, .dropbtn {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+
+
+li a:hover, .dropdown:hover .dropbtn {
+  background-color: red;
+}
+
+li.dropdown {
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1;}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+</style>
+</head>
+<body>
+
+<ul>
+  <li><a href="home.html" target="myframe">Home</a></li>
+  <li><a href="aboutme.html" target="myframe">About Me</a></li>
+  <li class="dropdown">
+    <a href="javascript:void(0)" class="dropbtn">Assignments</a>
+    <div class="dropdown-content">
+      <a href="assignment1.html" target="myframe">Stock Trading App</a>
+      <a href="assignment2.html" target="myframe">Register Form</a>
+      <a href="assignment3.html" target="myframe">Watch a video</a>
+    </div>
+  </li>
+   <li class="dropdown">
+    <a href="javascript:void(0)" class="dropbtn">Exercises</a>
+    <div class="dropdown-content">
+      <a href="animation.html" target="myframe">Animation</a>
+      <a href="verticalmenu.html" target="myframe">Vertical menu</a>
+      <a href="horizontalmenu.html" target="myframe">Horizontal menu</a>
+      <a href="firstchild.html" target="myframe">Pseudo class with first child</a>
+      <a href="cursor.html" target="myframe">Cursor</a>
+    </div>
+  </li>
+</ul>
+
+<h3>Assignments are inside the Navigation Bar</h3>
+<p>Hover over the "Assignments" link to see the Assignment menu.</p>
+
+<iframe src="" name="myframe" width="100%" height="550px" style="border: 0px"></iframe>
+</body>
+</html>

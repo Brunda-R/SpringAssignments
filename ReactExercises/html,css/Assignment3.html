@@ -1,0 +1,41 @@
+<html>
+<body>
+	<script type="text/javascript">
+		function playPause(){
+			var video=document.getElementById("video");
+			if(video.paused){
+				video.play();
+			}
+			else
+				video.pause();
+		}
+	</script>
+	<div>
+		<main>
+			<datalist id="colorlist">
+				<option value="green"></option>
+				<option value="red"></option>
+				<option value="yellow"></option>
+			</datalist>
+			<section id="section1">
+				Choose BG color: <input type="text" list="colorlist" onchange="this.parentElement.style.backgroundColor = this.value;" name="" align="left">
+				<center>
+					<img src="logo.PNG" alt="image not found" height="50px" align="center">
+				<h1>Awesome Online Videos</h1>
+				</center>
+			</section>
+			<section id="section2">
+				Choose BG color: <input type="text" list="colorlist" onchange="this.parentElement.style.backgroundColor = this.value;" name="" align="left">
+				<center>
+				<video id="video" width="420" height="300">
+					<source src="demovideo.mp4" type="video/mp4">
+						Browser doesn't support video
+				</video><br>
+				<input type="button" onclick="playPause()" value="Play">
+				<input type="button" onclick="playPause()" value="Pause">
+			</center>
+			</section>
+		</main>
+	</div>
+</body>
+</html>

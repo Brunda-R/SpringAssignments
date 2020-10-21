@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript">
+		class Person{
+			acceptDetails(name,dob,address){
+				this.name=name;
+				this.dob=dob;
+				this.address=address;
+			}
+			displayDetails(){
+				return "<tr> <td>"+this.name+"</td> <td>"+this.dob+"</td> <td>"+this.address+"</td> </tr>";
+			}
+			ageCalculate(){
+				var dob = new Date(this.dob);
+				var today = new Date();
+				var age = Math.floor((today-dob)/(1000*60*60*24*365));
+				return age;
+			}
+		}
+		var coll = new Array();
+		function acceptDetails(){
+			var name = document.getElementById("name").value;
+			var dob = document.getElementById("dob").value;
+			var address = document.getElementById("address").value;
+			var p = new Person();
+			p.acceptDetails(name,dob,address);
+			coll.push(p);
+		}
+		function displayDetails(){
+			str="<table border='1px'>";
+			str+="<tr> <th> Name </th> <th> DOB </th> <th> Address </th>"
+			for(i=0;i<coll.length;i++){
+				str+=coll[i].displayDetails();
+			}
+			str+="</table>";
+			document.getElementById("d1").innerHTML=str;
+		}
+		function calculateAge(){
+			var n = coll.length;
+			alert(coll[n-1].ageCalculate()+" Years");
+		}
+	</script>
+</head>
+<body>
+	<center>
+		Name: &nbsp&nbsp<input type="text"  name="" id="name"><br><br>
+		DOB: &nbsp&nbsp<input type="date"  name="" id="dob"><br><br>
+		Address: <input type="text"  name="" id="address"><br><br>
+
+		<input type="button" onclick="acceptDetails()" value="Accept Details" name="">&nbsp&nbsp
+		<input type="button" onclick="calculateAge()" value="Calculate age" name=""><br><br>
+		<input type="button" onclick="displayDetails()" value="Display Details" name=""><br><br>
+		<div id="d1"></div>
+	</center>
+</body>
+</html>

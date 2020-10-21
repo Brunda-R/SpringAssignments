@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Stock Trading</title>
+</head>
+<body>
+	<center>
+	<h1>Stock Trading Application</h1>
+	<table border="1px" style="border-collapse:collapse;width: 25%">
+		<tr>
+			<th>Ticker</th>
+			<th>Price</th>
+		</tr>
+		<tr>
+			<td>ABC</td>
+			<td>123.4</td>
+		</tr>
+		<tr>
+			<td>LMN</td>
+			<td>874</td>
+		</tr>
+		<tr>
+			<td>XYZ</td>
+			<td>435.7</td>
+		</tr>
+	</table>
+      <br><br>
+      <form >
+      	<table>
+      		<tr>
+				<td>Ticker</td>
+				<td> <input list="tickernames" type="text" name="Ticker">
+				 <datalist id="tickernames">
+				 	<option value="ABC"></option>
+				 	<option value="LMN"></option>
+				 	<option value="XYZ"></option>
+				 </datalist> </td>
+			</tr>
+			<tr>
+				<td> Quantity</td>
+				<td> <input type="number" id="quantity" min="10" max="100" step="10"> </td>
+			</tr>
+		</table>
+		<br><br>
+<input type="submit"  name="">
+</form>
+</center>
+</body>
+</html>

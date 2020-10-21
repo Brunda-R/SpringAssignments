@@ -1,0 +1,90 @@
+ <!DOCTYPE html>
+<html>
+ <body>
+        <h1>Agricultural Statistical Department of GOI - Bajra </h1>
+
+        <canvas id="mycanvas" width="500" height="400">Your browser does not support</canvas>
+
+        <script>
+            var canvas = document.getElementById('mycanvas');
+            var ctx = canvas.getContext('2d');
+
+            ctx.beginPath();
+            ctx.moveTo(90,365);
+            ctx.lineTo(90,0);
+            ctx.moveTo(140,365);
+            ctx.lineTo(140,0);
+            ctx.moveTo(190,365);
+            ctx.lineTo(190,0);
+            ctx.moveTo(240,365);
+            ctx.lineTo(240,0);
+            ctx.moveTo(290,365);
+            ctx.lineTo(290,0);
+            ctx.moveTo(340,365);
+            ctx.lineTo(340,0);
+            ctx.moveTo(390,365);
+            ctx.lineTo(390,0);
+            ctx.moveTo(40,315);
+            ctx.lineTo(450,315);
+            ctx.moveTo(40,265);
+            ctx.lineTo(450,265);
+            ctx.moveTo(40,215);
+            ctx.lineTo(450,215);
+            ctx.moveTo(40,165);
+            ctx.lineTo(450,165);
+            ctx.moveTo(40,115);
+            ctx.lineTo(450,115);
+            ctx.moveTo(40,65);
+            ctx.lineTo(450,65);
+            ctx.moveTo(40,15);
+            ctx.lineTo(450,15);
+            ctx.strokeStyle = '#cccccc';
+            ctx.stroke();
+
+            ctx.beginPath();
+            ctx.moveTo(40,400);
+            ctx.lineTo(40,0);
+            ctx.moveTo(0,365);
+            ctx.lineTo(450,365);
+            ctx.strokeStyle = '#000000';
+            ctx.stroke();
+
+            // build out the numbers for both directions of the chart
+            ctx.strokeText('700',8,20);
+            ctx.strokeText('600',8,70);
+            ctx.strokeText('500',8,120);
+            ctx.strokeText('400',8,170);
+            ctx.strokeText('300',8,220);
+            ctx.strokeText('200',8,270);
+            ctx.strokeText('100',8,320);
+
+            ctx.strokeText('0',16,385);
+            ctx.strokeText('2001',76,385);
+            ctx.strokeText('2002',136,385);
+            ctx.strokeText('2003',183,385);
+            ctx.strokeText('2004',231,385);
+            ctx.strokeText('2005',281,385);
+            ctx.strokeText('2006',332,385);
+            ctx.strokeText('2007',381,385);
+
+            // axis lables
+            ctx.beginPath();
+            ctx.font = 'bold 11px Arial';
+            ctx.fillStyle = '#3297b7';
+            ctx.fillText('LAKH TONS ^',50,10);
+            ctx.fillText('YEARS >',400,360);
+
+            // plot the points and draw the lines
+            ctx.beginPath();
+            ctx.strokeStyle = '#3297b7';
+            ctx.arc(90,224,2,0,2*Math.PI); // 2001 - 281
+            ctx.arc(140,226,2,0,2*Math.PI); // 2002 - 277
+            ctx.arc(190,228,2,0,2*Math.PI); // 2003 - 275
+            ctx.arc(240,116,2,0,2*Math.PI); // 2004 - 457
+            ctx.arc(290,265,2,0,2*Math.PI); // 2005 - 200
+            ctx.arc(340,218,2,0,2*Math.PI); // 2006 - 280
+            ctx.arc(390,290,2,0,2*Math.PI); // 2007 - 150
+            ctx.stroke();
+      </script>
+</body>
+</html>

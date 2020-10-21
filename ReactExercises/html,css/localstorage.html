@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript">
+		if(typeof(Storage) !== undefined) 
+		{
+			localStorage.setItem("name","Brunda");
+		}
+		else
+		{
+			document.getElementById("result").innerHTML= "Sorry, your browser doesn't support local storage";
+		}
+
+		function getDetails(){
+			document.getElementById("result").innerHTML=localStorage.getItem("name");
+		}
+	</script>
+</head>
+<body>
+<div id="result"></div>
+<input type="button" id="result" onclick="getDetails()" value="Get Details">
+</body>
+</html>

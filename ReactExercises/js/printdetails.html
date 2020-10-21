@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript">
+		//ES5 notation
+
+
+		//Constructor version
+		function Employee(id,name,sal){
+			this.empId=id;
+			this.name=name;
+			this.salary=sal;
+			// this.getEmpId=function(){
+			// 	return this.empId;
+			// }
+
+			// this.getName=function(){
+			// 	return this.name;
+			// }
+			// this.getSalary=function(){
+			// 	return this.salary;
+			// }
+
+			this.showEmployeeDetails=function(){
+				alert("Employee details are"+this.empId+" "+this.name+" "+this.salary)
+			}
+		}
+
+		var coll=new Array();
+
+		function save(){	
+			var id=document.getElementById('txt1').value;
+			var name=document.getElementById('txt2').value;
+			var salary=document.getElementById('txt3').value;
+
+			var obj=new Employee(id,name,salary)
+			coll.push(obj)
+		}
+
+		function display(){
+			str="<table border='5px'>"
+			for(i=0;i<coll.length;i++){
+				str+="<tr> <td>"+coll[i].empId+"</td> <td>"+coll[i].name+"</td> <td>"+coll[i].salary+"</td></tr>"
+				//alert(str)
+			}
+			str+='</table>'
+			//alert(str)
+			document.getElementById('d1').innerHTML=str;
+
+		}
+
+	</script>
+</head>
+<body>
+	Enter your empId <input type="text" name="" id="txt1"> <br>
+	Enter your Name <input type="text" name="" id="txt2"> <br>
+	Enter your Salary <input type="text" name="" id="txt3"> <br>
+
+	<input type="button" name="" onclick="save()" value="SAVE RECORD"> <br>
+	<input type="button" name="" onclick="display()" value="Display RECORD"> <br>
+
+	<div id="d1"></div>
+</body>
+</html>

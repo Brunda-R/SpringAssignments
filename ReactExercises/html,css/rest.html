@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript">
+		var database_name="MyDB"
+		var database_version=1.0
+		var database_description="my first database"
+		var database_size=2*1024*1024
+		var myObj=openDatabase(database_name,database_version,database_description,database_size,onSuccess());
+		myObj.transaction(function(tx){
+				tx.executeSql('CREATE TABLE IF NOT EXISTS movie(id,title,director)')
+				alert("table is created")
+			})
+		
+		function insertData(){
+			var request = new XMLHttpRequest()
+
+			request.open('GET', 'https://ghibliapi.herokuapp.com/films', true)
+			request.onload = function () {
+			  var data = JSON.parse(this.response)
+			  if (request.status >= 200 && request.status < 400) {
+			    data.forEach((movie) => {
+			      console.log("Id"+movie.id)
+			      console.log("TITLE"+movie.title)
+			      console.log("Director"+movie.director)
+				myObj.transaction(function(tx){
+					tx.executeSql('insert into movie(id,title,director) values("'+movie.id+'","'+movie.title+'","'+movie.director+'")')
+				})
+				})
+			  } else {
+			    console.log('error')
+			  }
+			}
+			request.send()
+		}
+
+
+		function displayData(){
+			myObj.transaction(function (tx) {
+                   var str = '<table border="4px">';  
+		            tx.executeSql('SELECT * FROM movie', [], function (tx, results) {  
+		                var len = results.rows.length, i;  
+		                for (i = 0; i < len; i++) {  
+		                str += "<tr>";  
+		                str += "<td>" + results.rows.item(i).id + "</td>";  
+		                str += "<td>" + results.rows.item(i).title + "</td>";  
+		                str += "<td>" + results.rows.item(i).director+ "</td>";  
+		                str += "</tr>";  
+		                  }
+		                str+="</table>"
+		                document.getElementById("result").innerHTML += str;  
+		                str = '';  
+		            });
+
+		        });  
+			}
+
+     	function onSuccess(){
+			alert("Database is created")
+		}
+
+	</script>
+</head>
+<body>
+	
+	<input type="button" name="" value="Insert Record" onclick="insertData()">
+	<input type="button" name="" value="Display Data" onclick="displayData()">
+<p id="result"></p>
+</body>
+</html>

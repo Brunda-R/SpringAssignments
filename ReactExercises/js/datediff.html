@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript">
+ 	function checkdiff(){
+ 		var fdate = document.getElementById("fdate").value;
+ 		var firstdate = new Date(fdate);
+ 		var sdate = document.getElementById("sdate").value;
+ 		var seconddate = new Date(sdate);
+ 		if(firstdate > seconddate){
+ 			alert("Second Value should be greater than the first");
+ 		}
+ 		else
+ 		{
+ 			var yearsdiff = seconddate.getFullYear() - firstdate.getFullYear();
+ 			var monthsdiff = yearsdiff*12 + Math.abs(seconddate.getMonth() - firstdate.getMonth());
+ 			var daysdiff = (seconddate - firstdate)/(1000 * 60 * 60 * 24);
+ 			var datediff = "Years:"+yearsdiff+" Months:"+monthsdiff+" Days:"+daysdiff;
+ 		 	alert(datediff);
+ 		 }
+ 	}
+ </script>
+</head>
+<body>
+<center>
+	Enter dates in mm/dd/yyyy format<br><br>
+	 First Date : <input type="text" name="" id="fdate"><br><br>
+	 Second Date : <input type="text" name="" id="sdate"><br><br>
+	 <input type="button" value="check difference" onclick="checkdiff()" name="">
+</center>
+</body>
+</html>
